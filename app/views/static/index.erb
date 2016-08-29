@@ -1,2 +1,18 @@
-<h1>Hello World</h1>
-<p>See Me in views/static/index.html.erb</p>
+<form action="/url" method="post">
+	Enter URL:
+	<input type="text" name="long_url">
+	<input type="submit" value="Submit">
+</form>
+
+<table style = "width:100%">
+	<tr>
+		<th>Long URL</th>
+		<th>Short URL</th>
+	</tr>
+	<% @all_url.each do |url| %>
+	<tr>
+		<td><a href = <%= url.long_url %>> <%= url.long_url%> </a></td>
+		<td><a href = <%= url.short_url %>> <%= url.short_url%> </a></td>
+	</tr>
+	<% end %>
+</table>

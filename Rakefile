@@ -47,7 +47,7 @@ namespace :generate do
 
 		if ENV['NAME'] != ENV['NAME'].singularize
 			puts "==================================================================="
-			puts "	WARNING: #{ENV['NAME']} is plural. Auto-correcting to singluar."
+			puts "	WARNING: #{ENV['NAME']} is plural. Auto-correcting to singular."
 			puts "==================================================================="
 			ENV['NAME'] = ENV['NAME'].singularize
 		end

@@ -1,6 +1,6 @@
 get '/' do
 	# @all_url = Url.all
-	@all_url = Url.paginate(page: params[:page], per_page: 50)
+	@all_url = Url.paginate(page: params[:page], per_page: 20).order("created_at DESC")
 	@error = "Invalid URL" if params[:error]
 	erb :"static/index"
 end

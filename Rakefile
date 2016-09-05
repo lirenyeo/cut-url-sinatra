@@ -1,4 +1,5 @@
 require 'rake'
+require 'faker'
 require 'rspec/core/rake_task'
 
 # Include environment settings
@@ -121,6 +122,14 @@ namespace :db do
 	desc "Populate the database with dummy data by running db/seeds.rb"
 	task :seed do
 		require APP_ROOT.join('db', 'seeds.rb')
+	end
+
+	desc "Populate db with 50 random dummy data by running db/rand_seeds.rb"
+	
+	task :rand_seed, :num do |t, args|
+		args.num.to_i.times do
+			Url.create(long_url: Faker::Internet.url)
+		end
 	end
 
 	desc "Returns the current schema version number"

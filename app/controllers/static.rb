@@ -1,11 +1,14 @@
 # app/controllers/users.rb
 require 'byebug'
+require 'sinatra'
+require 'sinatra/flash'
 
 enable :sessions
 
 get '/' do
-	puts "[LOG]Inside /"
 	@all_url = Url.all
+
+	@error = "Invalid URL" if params[:error]
 	erb :"static/index"
 end
 
@@ -15,12 +18,20 @@ get '/url' do
 end
 
 post '/url' do
-	puts "[LOG] Pressed Submit"
-	puts "[LOG] Param: #{params.inspect}"
+	params[:url][:short_url] = Url.shorten
+	@url = Url.new(params[:url])
+	if @url.save
+		@url.to_json(except: :id)
+		# Only be seen until the NEXT access of /url
+		# flash[:notice] = "Your URL has been cut into #{@url.short_url}"
+	else
+		status 400
+		@url.errors.full_messages.join(', ')
+		# Go to '/' with params[:error] = "0"
+		# redirect "/?error=#{@url.long_url}"
+	end
 
-	@url = Url.create(long_url: params[:long_url], short_url: Url.shorten)
-
-	redirect '/'
+	# redirect '/'
 end
 
 get '/signup' do
@@ -42,5 +53,9 @@ end
 
 get '/:short_url' do
 	result = Url.where(short_url: params['short_url']).first
-	redirect result.blank? ? '/error' : result.long_url
+	redirect '/error' if result.blank?
+	result.click_count += 1
+	result.save
+	redirect result.long_url
 end
+

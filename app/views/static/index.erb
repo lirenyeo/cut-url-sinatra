@@ -1,18 +1,43 @@
-<form action="/url" method="post">
-	Enter URL:
-	<input type="text" name="long_url">
-	<input type="submit" value="Submit">
-</form>
+<nav>
+	<div class="navigation">
+	  <li><img data-other-src="img/cutUrl-banner-cut.png"  src='img/cuturl-banner.png' height='72' width ='240'></li>
+	  <li><a href="/">Home</a></li>
+	  <li><a href="#">About</a></li>
+	  <li><a href="#">Products</a></li>
+	  <li><a href="#">Contact</a></li>
+	</div>
+	  
+	<div class='login'>
+		<li><a href="#">LOGIN</a></li>
+		<li><a href="#">SIGNUP</a></li>
+	</div>
+</nav>
 
-<table style = "width:100%">
-	<tr>
-		<th>Long URL</th>
-		<th>Short URL</th>
-	</tr>
-	<% @all_url.each do |url| %>
-	<tr>
-		<td><a href = <%= url.long_url %>> <%= url.long_url%> </a></td>
-		<td><a href = <%= url.short_url %>> <%= url.short_url%> </a></td>
-	</tr>
-	<% end %>
-</table>
+<div class='container'>
+	<form action="/url" method="post">
+		<h1>CutURL. You Type, We Cut.</h1>
+		<!-- <span>Enter URL:</span> -->
+		<input id="submit-txt" type="text" placeholder="Enter your URL here" name="url[long_url]" autofocus>
+		<input id="submit-btn" type="submit" value="CUT!">
+	</form>
+	
+	<li id='error'><%= @error  %></li>
+	<li id='success'><%= flash[:notice] %></li>
+</div>
+
+<div class='data'>
+	<table style = "width:100%">
+		<tr>
+			<th>Long URL</th>
+			<th>Short URL</th>
+			<th>Click Count</th>
+		</tr>
+		<% @all_url.reverse_each do |url| %>
+		<tr>
+			<td><a href = <%= url.long_url %>> <%= url.long_url%> </a></td>
+			<td><a href = <%= url.short_url %>> <%= url.short_url%> </a></td>
+			<td><center> <%= url.click_count %> </center></td>
+		</tr>
+		<% end %>
+	</table>
+</div>

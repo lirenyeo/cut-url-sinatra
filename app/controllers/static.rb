@@ -1,8 +1,3 @@
-require 'sinatra'
-require 'sinatra/flash'
-
-enable :sessions
-
 get '/' do
 	# @all_url = Url.all
 	@all_url = Url.paginate(page: params[:page], per_page: 50)

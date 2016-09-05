@@ -18,6 +18,8 @@ GEM
     daemons (1.2.4)
     diff-lcs (1.2.5)
     eventmachine (1.2.0.1)
+    faker (1.6.6)
+      i18n (~> 0.5)
     i18n (0.7.0)
     minitest (5.9.0)
     multi_json (1.12.1)
@@ -38,7 +40,7 @@ GEM
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
       rspec-mocks (~> 3.5.0)
-    rspec-core (3.5.2)
+    rspec-core (3.5.3)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -79,6 +81,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   activesupport
+  faker
   pg
   puma
   rails_12factor

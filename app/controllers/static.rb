@@ -6,8 +6,8 @@ require 'sinatra/flash'
 enable :sessions
 
 get '/' do
-	@all_url = Url.all
-
+	# @all_url = Url.all
+	@all_url = Url.paginate(page: params[:page], per_page: 50)
 	@error = "Invalid URL" if params[:error]
 	erb :"static/index"
 end
@@ -18,7 +18,7 @@ get '/url' do
 end
 
 post '/url' do
-	params[:url][:short_url] = Url.shorten
+	# params[:url][:short_url] = Url.shorten
 	@url = Url.new(params[:url])
 	if @url.save
 		@url.to_json(except: :id)

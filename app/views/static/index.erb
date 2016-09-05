@@ -9,6 +9,16 @@
 	  
 	<div class='login'>
 		<li><a href="#">LOGIN</a></li>
+		<div class='login-dropdown'>
+			<label>Username</label>
+		    <input type="text" placeholder="Enter Username" name="uname" required>
+
+		    <label>Password</label>
+		    <input type="password" placeholder="Enter Password" name="psw" required>
+
+		    <button type="login">Login</button>
+		    <input type="checkbox" checked="checked"> Remember me
+		</div>
 		<li><a href="#">SIGNUP</a></li>
 	</div>
 </nav>
@@ -40,4 +50,5 @@
 		</tr>
 		<% end %>
 	</table>
+	<%= will_paginate @all_url %>
 </div>

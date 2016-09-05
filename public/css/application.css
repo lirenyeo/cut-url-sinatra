@@ -33,6 +33,36 @@ nav {
 	padding: 5px;
 }
 
+.login:hover .login-dropdown {
+    display: block;
+}
+
+.login-dropdown {
+	z-index: 999;
+    display: none;
+    margin-left: -90px;
+    margin-top: 40px;
+    position: absolute;
+    background-color: black;
+    /*min-width: 50px;*/
+    width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    font-family: "Helvetica";
+    font-size: 8pt;
+    color:white;
+}
+
+/*.login-dropdown input[type=text] {
+	height: 20px;
+	width: 40px;
+}
+
+.login-dropdown input[type=password] {
+	height: 20px;
+	width: 40px;
+}*/
+
 /** When resized **/
 @media all and (max-width: 600px) {
 	.navigation {
@@ -119,7 +149,7 @@ form h1{
 	text-align: center;
 }
 
-input[type=text] {
+#submit-txt {
 	height: 40px;
     width: 50%;
     padding: 12px 20px;
@@ -128,7 +158,7 @@ input[type=text] {
     position: relative;
 }
 
-input[type=submit] {
+#submit-btn {
 	height: 40px;
 	position: absolute;
 	transition: all 0.3s;

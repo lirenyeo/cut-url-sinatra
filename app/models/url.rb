@@ -4,10 +4,10 @@ class Url < ActiveRecord::Base
 
 	validates :short_url, uniqueness: true
 
-	# before_create :shorten
+	before_create :shorten
 
-	def self.shorten
+	def shorten
 		# 'http://' << ([*('a'..'z'),*('A'..'Z'),*('0'..'9')]-%w(0 1 I O)).sample(8).join
-		SecureRandom.hex(6)
+		self.short_url = SecureRandom.hex(6)
 	end
 end

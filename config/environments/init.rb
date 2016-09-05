@@ -13,6 +13,8 @@ require 'pg'
 require 'active_record'
 require 'logger'
 
+
+
 	# sinatra
 require 'sinatra'
 require "sinatra/reloader" if development?
@@ -21,6 +23,9 @@ require "sinatra/reloader" if development?
 require 'erb'
 require 'uri'
 require 'securerandom'
+
+require 'will_paginate'
+require 'will_paginate/active_record'
 ######################################################################
 
 

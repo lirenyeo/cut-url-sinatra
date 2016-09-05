@@ -1,5 +1,3 @@
-# app/controllers/users.rb
-require 'byebug'
 require 'sinatra'
 require 'sinatra/flash'
 

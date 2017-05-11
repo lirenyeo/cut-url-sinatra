@@ -14,7 +14,6 @@ GEM
       tzinfo (~> 1.1)
     arel (7.1.1)
     backports (3.6.8)
-    byebug (9.0.6)
     concurrent-ruby (1.0.2)
     daemons (1.2.4)
     diff-lcs (1.2.5)
@@ -82,7 +81,6 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   activesupport
-  byebug
   faker
   pg
   puma
@@ -97,4 +95,4 @@ DEPENDENCIES
   will_paginate (~> 3.1.0)
 
 BUNDLED WITH
-   1.13.6
+   1.14.6

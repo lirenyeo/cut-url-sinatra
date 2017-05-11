@@ -1,0 +1,17 @@
+<div class='data'>
+  <table style = "width:100%">
+    <tr>
+      <th>Long URL</th>
+      <th>Short URL</th>
+      <th>Click Count</th>
+    </tr>
+    <% @all_url.each do |url| %>
+    <tr>
+      <td><a href = <%= url.long_url %>> <%= url.long_url%> </a></td>
+      <td><a href = <%= url.short_url %>> <%= "#{@root_url}/#{url.short_url}"%> </a></td>
+      <td><center> <%= url.click_count %> </center></td>
+    </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @all_url %>
+</div>

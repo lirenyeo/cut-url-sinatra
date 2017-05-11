@@ -232,3 +232,7 @@ tr:nth-child(even) td { background: #8a7575; }
 tr:nth-child(odd) td { background: #cab7b7; }
 
 tr td:hover { background: #666; color: #FFF; }
+
+#load-icon {
+	visibility: hidden;
+}

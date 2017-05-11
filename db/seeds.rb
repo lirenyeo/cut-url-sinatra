@@ -3,7 +3,7 @@ require 'securerandom'
 
 s = ''
 
-File.open("db/urls", "r").each_line do |line|
+File.open("db/urls_short", "r").each_line do |line|
   s << "('#{line[1..-4]}', '#{SecureRandom.hex(6)}')#{line[-2]}"
 end
 

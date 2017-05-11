@@ -27,28 +27,17 @@
 	<form action="/url" method="post">
 		<h1>CutURL. You Type, We Cut.</h1>
 		<!-- <span>Enter URL:</span> -->
-		<input id="submit-txt" type="text" placeholder="Enter your URL here" name="url[long_url]" autofocus>
+		<input id="submit-txt" type="text" placeholder="Enter your URL here" name="url[long_url]" data-url="<%= @root_url %>" autofocus>
 		<input id="submit-btn" type="submit" value="CUT!">
 	</form>
 	
 	<li id='error'></li>
 	<li id='success'></li>
+	<li id='load-icon'>
+		<img src="img/flickr.svg">
+	</li>
 </div>
 
-<div class='data'>
-	<table style = "width:100%">
-		<tr>
-			<th>Long URL</th>
-			<th>Short URL</th>
-			<th>Click Count</th>
-		</tr>
-		<% @all_url.each do |url| %>
-		<tr>
-			<td><a href = <%= url.long_url %>> <%= url.long_url%> </a></td>
-			<td><a href = <%= url.short_url %>> <%= url.short_url%> </a></td>
-			<td><center> <%= url.click_count %> </center></td>
-		</tr>
-		<% end %>
-	</table>
-	<%= will_paginate @all_url %>
+<div id="table">
+	<%= erb :"static/table", layout: false %>
 </div>

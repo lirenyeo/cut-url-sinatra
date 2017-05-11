@@ -1,54 +1,50 @@
 get '/' do
-	# @all_url = Url.all
-	@all_url = Url.paginate(page: params[:page], per_page: 20).order("created_at DESC")
-	@error = "Invalid URL" if params[:error]
-	erb :"static/index"
+  @root_url = request.base_url
+  # @all_url = Url.all
+  @all_url = Url.paginate(page: params[:page], per_page: 20).order("created_at DESC")
+  @error = "Invalid URL" if params[:error]
+  erb :"static/index"
 end
 
 get '/url' do
-	puts "[LOG] get /url"
-	redirect '/'
+  puts "[LOG] get /url"
+  redirect '/'
 end
 
 post '/url' do
-	# params[:url][:short_url] = Url.shorten
-	@url = Url.new(params[:url])
-	if @url.save
-		@url.to_json(except: :id)
-		# Only be seen until the NEXT access of /url
-		# flash[:notice] = "Your URL has been cut into #{@url.short_url}"
-	else
-		status 400
-		@url.errors.full_messages.join(', ')
-		# Go to '/' with params[:error] = "0"
-		# redirect "/?error=#{@url.long_url}"
-	end
+  @root_url = request.base_url
+  @url = Url.new(params[:url])
+  if @url.save
+    @all_url = Url.paginate(page: params[:page], per_page: 20).order("created_at DESC")
+    erb :"static/table", layout: false
+  else
+    status 404
+    @url.errors.full_messages.join('. ')
+  end
 
-	# redirect '/'
 end
 
 get '/signup' do
-	erb :'users/new'
+  erb :'users/new'
 end
 
 post '/signup' do
-	# Do something processing with user input
-	redirect to '/user/dashboard'
+  # Do something processing with user input
+  redirect to '/user/dashboard'
 end
 
 get '/user/dashboard' do
-	erb :dashboard
+  erb :dashboard
 end
 
 get '/error' do
-	erb :"static/error"
+  erb :"static/error"
 end
 
 get '/:short_url' do
-	result = Url.where(short_url: params['short_url']).first
-	redirect '/error' if result.blank?
-	result.click_count += 1
-	result.save
-	redirect result.long_url
+  result = Url.where(short_url: params['short_url']).first
+  redirect '/error' if result.blank?
+  result.click_count += 1
+  result.save
+  redirect result.long_url
 end
-
